@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">desafio_tupi</string>
+    <string name="transacao_autorizada">Transação autorizada</string>
+    <string name="transacao_negada">Transação negada</string>
+    <string name="cartao_valido">"Cartão válido: "</string>
+    <string name="preencher_cvv">Preencher cvv</string>
+    <string name="metodo_nao_suportado">Método de verificação não suportado</string>
+    <string name="data_invalida">Data de validade inválida ou expirada</string>
+</resources>
