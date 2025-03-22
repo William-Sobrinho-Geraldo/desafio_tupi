@@ -117,6 +117,16 @@
         tools:itemCount="4"
         tools:listitem="@layout/item_recycler_logs" />
 
+    <TextView
+        android:id="@+id/txt_semLogs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Nenhum log registrado"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

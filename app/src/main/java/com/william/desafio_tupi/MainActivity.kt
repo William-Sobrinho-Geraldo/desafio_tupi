@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTextExpiryDate: EditText
     private lateinit var editTextCvv: EditText
     private lateinit var buttonValidate: Button
+    private lateinit var adapterLogs: AdapterLogs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,28 +41,11 @@ class MainActivity : AppCompatActivity() {
         buttonValidate = binding.buttonValidate
 
 
-        val adapterLogs = AdapterLogs()
-        binding.recyclerLogs.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = adapterLogs
-        }
-
-
-        binding.buttonShowLogs.setOnClickListener {
-            binding.recyclerLogs.visibility = View.VISIBLE
-            binding.buttonCloseLogs.visibility = View.VISIBLE
-            binding.buttonShowLogs.visibility = View.GONE
-
-            cardViewModel.allCardLogs.observe(this) { cardLogs ->
-                adapterLogs.updateList(cardLogs)
-            }
-        }
-
-        binding.buttonCloseLogs.setOnClickListener {
-            binding.buttonShowLogs.visibility = View.VISIBLE
-            binding.buttonCloseLogs.visibility = View.GONE
-            binding.recyclerLogs.visibility = View.GONE
-        }
+        adapterLogs = AdapterLogs()
+        configRecyclerLogs(adapterLogs)
+        configButtonShowLogs()
+        condigButtonCloseLogs()
+        configObservers()
 
         // Configurar botão de validação
         buttonValidate.setOnClickListener {
@@ -71,13 +55,14 @@ class MainActivity : AppCompatActivity() {
                 validDate = editTextExpiryDate.text.toString(),
                 cvm = "PIN",
                 cvv = editTextCvv.text.toString(),
+                createdAt = System.currentTimeMillis()
             )
 
             val result = Utility.validateCard(card = card, context = this)
             // Tratar o resultado
             result.onSuccess { validatedCard ->
                 // Cartão válido
-                mostrarToast(getString(R.string.cartao_valido) + validatedCard.pan, this)
+//                mostrarToast(getString(R.string.cartao_valido) + validatedCard.pan, this)
                 val transacaoAutorizada = Utility.mockAuthorize()
                 validatedCard.isAuthorized = transacaoAutorizada
 
@@ -95,6 +80,48 @@ class MainActivity : AppCompatActivity() {
 
         configMaskCardNumber()
         configMaskExpiryDate()
+    }
+
+    private fun configRecyclerLogs(adapterLogs: AdapterLogs) {
+        binding.recyclerLogs.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = adapterLogs
+        }
+    }
+
+    private fun configButtonShowLogs() {
+        binding.buttonShowLogs.setOnClickListener {
+            binding.recyclerLogs.visibility = View.VISIBLE
+            binding.buttonCloseLogs.visibility = View.VISIBLE
+            binding.buttonShowLogs.visibility = View.GONE
+        }
+    }
+
+    private fun condigButtonCloseLogs() {
+        binding.buttonCloseLogs.setOnClickListener {
+            binding.buttonShowLogs.visibility = View.VISIBLE
+            binding.buttonCloseLogs.visibility = View.GONE
+            binding.recyclerLogs.visibility = View.GONE
+        }
+    }
+
+    private fun configObservers() {
+        cardViewModel.allCardLogs.observe(this) { cardLogs ->
+            adapterLogs.updateList(cardLogs)
+            if (cardLogs.size == 0) {
+                binding.txtSemLogs.visibility = View.VISIBLE
+            } else {
+                binding.txtSemLogs.visibility = View.GONE
+            }
+        }
+
+        cardViewModel.successStatus.observe(this) {card ->
+            mostrarToast(getString(R.string.cartao_valido) + card.pan + "Operação registrada no banco de dados! ", this)
+        }
+
+        cardViewModel.errorStatus.observe(this) { errorMessage ->
+            mostrarToast("Erro: $errorMessage", this)
+        }
     }
 
     private fun configMaskExpiryDate() {

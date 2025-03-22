@@ -2,5 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="cinzaEscuro">#5f5961</color>
+    <color name="cinza">#8d888c</color>
 
 </resources>

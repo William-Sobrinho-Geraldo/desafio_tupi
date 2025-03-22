@@ -5,20 +5,145 @@
     android:layout_height="wrap_content"
     android:paddingBottom="14dp">
 
-    <TextView
-        android:id="@+id/txt_message"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="4dp"
-        android:text="Logs"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/txt_message" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp">
+
+            <!-- Titular do Cartão -->
+            <TextView
+                android:id="@+id/txt_card_holder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Titular do Cartão"
+                android:textColor="@color/cinzaEscuro"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Número do Cartão -->
+            <TextView
+                android:id="@+id/txt_card_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:text="**** **** **** 1234"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_card_holder" />
+
+            <LinearLayout
+                android:id="@+id/linlay_payment_method"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_card_number">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Método: "
+                    android:textColor="@color/cinza"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Método Usado -->
+                <TextView
+                    android:id="@+id/txt_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Cartão de Crédito"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linlay_cvv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linlay_payment_method">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="CVV: "
+                    android:textColor="@color/cinza"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Código CVV -->
+                <TextView
+                    android:id="@+id/txt_cvv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="***"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linlay_payment_method" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/txt_createdAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:text="Registro criado em :  01/01/2001  10:05"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/linlay_cvv"
+                app:layout_constraintTop_toBottomOf="@id/linlay_cvv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/txt_message"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="10dp"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        android:text="Logs"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="1.5dp"-->
+    <!--        android:layout_marginTop="4dp"-->
+    <!--        android:background="@color/black"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/txt_message" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

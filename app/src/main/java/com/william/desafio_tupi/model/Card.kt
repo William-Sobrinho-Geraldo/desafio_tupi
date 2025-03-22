@@ -14,6 +14,7 @@ data class Card(
     val cvm: String, // Método de verificação (ex: "PIN", "Signature", "None")
     val cvv: String, // Código de verificação (ex: "123")
     val codeService: String = "101",// Código de serviço (ex: "101")
-    var isAuthorized: Boolean = false
+    var isAuthorized: Boolean = false,
+    val createdAt: Long? = null //System.currentTimeMillis() // Timestamp da criação
 
 )

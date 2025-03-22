@@ -4,10 +4,14 @@ import android.content.Context
 import android.widget.Toast
 import com.william.desafio_tupi.R
 import com.william.desafio_tupi.model.Card
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import kotlin.random.Random
 
 class Utility {
@@ -50,6 +54,8 @@ class Utility {
         /**
          * Valida o número do cartão (PAN) usando o algoritmo de Luhn
          * O Pan   4556737586899855   é válido segundo Luhn
+         * 4556737586899856
+         * 4556737586899857
          */
         private fun isValidPan(cardNumber: String): Boolean {
             val cleanPan = cardNumber.replace("\\D".toRegex(), "")
@@ -127,6 +133,13 @@ class Utility {
 
         fun mockAuthorize(): Boolean {
             return Random.nextBoolean() // Retorna true ou false aleatoriamente
+        }
+
+        fun formatTimestampToDate(timestamp: Long): String {
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()) // Definindo o formato
+            sdf.timeZone = TimeZone.getTimeZone("America/Sao_Paulo") // Definindo o fuso horário para São Paulo
+            val date = Date(timestamp) // Criando o objeto Date a partir do timestamp
+            return sdf.format(date) // Formatando a data no formato desejado
         }
     }
 }
