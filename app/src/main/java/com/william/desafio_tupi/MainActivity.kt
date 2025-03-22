@@ -40,44 +40,13 @@ class MainActivity : AppCompatActivity() {
         editTextCvv = binding.editTextCvv
         buttonValidate = binding.buttonValidate
 
-
         adapterLogs = AdapterLogs()
         configRecyclerLogs(adapterLogs)
         configButtonShowLogs()
         condigButtonCloseLogs()
+        configButtonValidarCartao()
+
         configObservers()
-
-        // Configurar botão de validação
-        buttonValidate.setOnClickListener {
-            val card = Card(
-                holderName = editTextCardHolderName.text.toString(),
-                pan = editTextCardNumber.text.toString(),
-                validDate = editTextExpiryDate.text.toString(),
-                cvm = "PIN",
-                cvv = editTextCvv.text.toString(),
-                createdAt = System.currentTimeMillis()
-            )
-
-            val result = Utility.validateCard(card = card, context = this)
-            // Tratar o resultado
-            result.onSuccess { validatedCard ->
-                // Cartão válido
-//                mostrarToast(getString(R.string.cartao_valido) + validatedCard.pan, this)
-                val transacaoAutorizada = Utility.mockAuthorize()
-                validatedCard.isAuthorized = transacaoAutorizada
-
-                if (transacaoAutorizada) mostrarToast(getString(R.string.transacao_autorizada), this)
-                else mostrarToast(getString(R.string.transacao_negada), this)
-
-
-                //logar dados no banco de dados
-                cardViewModel.logCard(validatedCard)
-            }.onFailure { exception ->
-                // Cartão inválido ou erro na validação
-                mostrarToast("${exception.message}", this)
-            }
-        }
-
         configMaskCardNumber()
         configMaskExpiryDate()
     }
@@ -88,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             adapter = adapterLogs
         }
     }
+
 
     private fun configButtonShowLogs() {
         binding.buttonShowLogs.setOnClickListener {
@@ -105,6 +75,36 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun configButtonValidarCartao() {
+        buttonValidate.setOnClickListener {
+            val card = gerarCardComOsDadosDigitados()
+
+            val resultadoValidacao = Utility.validateCard(card = card, context = this)
+            // Tratar o resultado
+            resultadoValidacao.onSuccess { cartaoValido ->   // Cartão Válido
+                val transacaoAutorizada = Utility.gerarAutorizacaoAleatoria()
+                cartaoValido.isAuthorized = transacaoAutorizada
+
+                if (transacaoAutorizada) mostrarToast(getString(R.string.transacao_autorizada), this)
+                else mostrarToast(getString(R.string.transacao_negada), this)
+
+                // Logar/Inserir dados no SQLite
+                cardViewModel.logCard(cartaoValido)
+            }.onFailure { exception ->  // Cartão inválido ou erro na validação
+                mostrarToast("${exception.message}", this)
+            }
+        }
+    }
+
+    private fun gerarCardComOsDadosDigitados() = Card(
+        holderName = editTextCardHolderName.text.toString(),
+        pan = editTextCardNumber.text.toString(),
+        validDate = editTextExpiryDate.text.toString(),
+        cvm = "PIN",
+        cvv = editTextCvv.text.toString(),
+        createdAt = System.currentTimeMillis()
+    )
+
     private fun configObservers() {
         cardViewModel.allCardLogs.observe(this) { cardLogs ->
             adapterLogs.updateList(cardLogs)
@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        cardViewModel.successStatus.observe(this) {card ->
+        cardViewModel.successStatus.observe(this) { card ->
             mostrarToast(getString(R.string.cartao_valido) + card.pan + "Operação registrada no banco de dados! ", this)
         }
 
@@ -124,14 +124,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun configMaskExpiryDate() {
-        val maskExpiryDate = MaskEditTextChangedListener("##/##", binding.editTextExpiryDate)
-        editTextExpiryDate.addTextChangedListener(maskExpiryDate)
-    }
-
     private fun configMaskCardNumber() {
         val maskCardNumber = MaskEditTextChangedListener("#### #### #### #### #### #### ###", binding.editTextCardNumber)
         editTextCardNumber.addTextChangedListener(maskCardNumber)
+    }
+
+    private fun configMaskExpiryDate() {
+        val maskExpiryDate = MaskEditTextChangedListener("##/##", binding.editTextExpiryDate)
+        editTextExpiryDate.addTextChangedListener(maskExpiryDate)
     }
 
 

@@ -130,7 +130,7 @@ class Utility {
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
 
-        fun mockAuthorize(): Boolean {
+        fun gerarAutorizacaoAleatoria(): Boolean {
             return Random.nextBoolean() // Retorna true ou false aleatoriamente
         }
 

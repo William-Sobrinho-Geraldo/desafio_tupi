@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.william.desafio_tupi.data.dao.CardLogDao
-import com.william.desafio_tupi.data.entity.CardLog
 import com.william.desafio_tupi.model.Card
 
 @Database(entities = [Card::class], version = 3, exportSchema = false)

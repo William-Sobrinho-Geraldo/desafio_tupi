@@ -10,10 +10,7 @@ import com.william.desafio_tupi.databinding.ItemRecyclerLogsBinding
 import com.william.desafio_tupi.model.Card
 import com.william.desafio_tupi.utility.Utility
 
-class AdapterLogs(
-//    val context: Context,
-//    private val onItemClick: (Card) -> Unit,
-) :
+class AdapterLogs() :
     RecyclerView.Adapter<AdapterLogs.ViewHolder>() {
 
     private var listaCards: AsyncListDiffer<Card> = AsyncListDiffer(this, DiffCallBack)
