@@ -140,6 +140,11 @@ class Utility {
             val date = Date(timestamp) // Criando o objeto Date a partir do timestamp
             return sdf.format(date) // Formatando a data no formato desejado
         }
+
+        fun getRandomMethod(): String {
+            val supportedMethods = listOf("PIN", "SIGNATURE", "NONE", "ONLINE", "OFFLINE", "BIOMETRIA")
+            return supportedMethods.random()
+        }
     }
 }
 

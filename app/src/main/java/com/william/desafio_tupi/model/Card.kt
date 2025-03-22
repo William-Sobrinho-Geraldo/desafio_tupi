@@ -3,7 +3,6 @@ package com.william.desafio_tupi.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "card_logs")
 data class Card(
     @PrimaryKey(autoGenerate = true)
@@ -15,6 +14,6 @@ data class Card(
     val cvv: String, // Código de verificação (ex: "123")
     val codeService: String = "101",// Código de serviço (ex: "101")
     var isAuthorized: Boolean = false,
-    val createdAt: Long? = null //System.currentTimeMillis() // Timestamp da criação
+    val createdAt: Long? = null // Timestamp da criação
 
 )

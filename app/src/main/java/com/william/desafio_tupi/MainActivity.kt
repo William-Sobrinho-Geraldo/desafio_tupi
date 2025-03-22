@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         holderName = editTextCardHolderName.text.toString(),
         pan = editTextCardNumber.text.toString(),
         validDate = editTextExpiryDate.text.toString(),
-        cvm = "PIN",
+        cvm = Utility.getRandomMethod(),
         cvv = editTextCvv.text.toString(),
         createdAt = System.currentTimeMillis()
     )
