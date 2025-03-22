@@ -8,10 +8,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class MyApp : Application() {
-
-
-    val database by lazy { AppDatabase.getDatabase(this) }
-    val repository by lazy { CardLogRepository(database.cardLogDao()) }
+//    val database by lazy { AppDatabase.getDatabase(this) }
+//    val repository by lazy { CardLogRepository(database.cardLogDao()) }
 
     override fun onCreate() {
         super.onCreate()

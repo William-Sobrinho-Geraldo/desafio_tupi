@@ -1,10 +1,13 @@
 package com.william.desafio_tupi
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener
+import com.william.desafio_tupi.adapterRecyclerView.AdapterLogs
 import com.william.desafio_tupi.model.Card
 import com.william.desafio_tupi.databinding.ActivityMainBinding
 import com.william.desafio_tupi.utility.Utility
@@ -36,9 +39,34 @@ class MainActivity : AppCompatActivity() {
         editTextCvv = binding.editTextCvv
         buttonValidate = binding.buttonValidate
 
+
+        val adapterLogs = AdapterLogs()
+        binding.recyclerLogs.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = adapterLogs
+        }
+
+
+        binding.buttonShowLogs.setOnClickListener {
+            binding.recyclerLogs.visibility = View.VISIBLE
+            binding.buttonCloseLogs.visibility = View.VISIBLE
+            binding.buttonShowLogs.visibility = View.GONE
+
+            cardViewModel.allCardLogs.observe(this) { cardLogs ->
+                adapterLogs.updateList(cardLogs)
+            }
+        }
+
+        binding.buttonCloseLogs.setOnClickListener {
+            binding.buttonShowLogs.visibility = View.VISIBLE
+            binding.buttonCloseLogs.visibility = View.GONE
+            binding.recyclerLogs.visibility = View.GONE
+        }
+
         // Configurar botão de validação
         buttonValidate.setOnClickListener {
             val card = Card(
+                holderName = editTextCardHolderName.text.toString(),
                 pan = editTextCardNumber.text.toString(),
                 validDate = editTextExpiryDate.text.toString(),
                 cvm = "PIN",

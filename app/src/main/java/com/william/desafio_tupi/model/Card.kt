@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Card(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
+    val holderName: String? = null, // Número do cartão (Primary Account Number)
     val pan: String, // Número do cartão (Primary Account Number)
     val validDate: String, // Data de validade no formato MM/YY
     val cvm: String, // Método de verificação (ex: "PIN", "Signature", "None")
