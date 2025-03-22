@@ -54,8 +54,8 @@ class Utility {
         /**
          * Valida o número do cartão (PAN) usando o algoritmo de Luhn
          * O Pan   4556737586899855   é válido segundo Luhn
-         * 4556737586899856
-         * 4556737586899857
+         * 4556737586899855
+         * 5100361728163639
          */
         private fun isValidPan(cardNumber: String): Boolean {
             val cleanPan = cardNumber.replace("\\D".toRegex(), "")
@@ -78,7 +78,6 @@ class Utility {
 
                 sum += digit
             }
-
             return sum % 10 == 0 // Checar se no fim é divisível por 10
         }
 
