@@ -6,8 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.william.desafio_tupi.data.dao.CardLogDao
 import com.william.desafio_tupi.data.entity.CardLog
+import com.william.desafio_tupi.model.Card
 
-@Database(entities = [CardLog::class], version = 1, exportSchema = false)
+//@Database(entities = [CardLog::class], version = 1, exportSchema = false)
+@Database(entities = [Card::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun cardLogDao(): CardLogDao
 

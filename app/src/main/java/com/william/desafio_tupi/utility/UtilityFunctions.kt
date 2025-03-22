@@ -12,6 +12,7 @@ import kotlin.random.Random
 
 class Utility {
     companion object {
+//        * O Pan   4556737586899855   é válido segundo Luhn
 
         fun validateCard(card: Card, context: Context): Result<Card> {
             // Validar PAN (número do cartão)

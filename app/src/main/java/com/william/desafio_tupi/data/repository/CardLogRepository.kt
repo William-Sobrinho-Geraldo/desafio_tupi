@@ -10,25 +10,32 @@ import kotlinx.coroutines.withContext
 
 class CardLogRepository(private val cardLogDao: CardLogDao) {
     
-    val allCardLogs: LiveData<List<Card>> = cardLogDao.getAllCardLogs().map { logs ->
-        logs.map { it.toCard() }
-    }
+    val allCardLogs: LiveData<List<Card>> = cardLogDao.getAllCardLogs()
+
+//        .map { logs ->
+//        logs.map { it.toCard() }
+//    }
     
-    val authorizedCardLogs: LiveData<List<Card>> = cardLogDao.getAuthorizedCardLogs().map { logs ->
-        logs.map { it.toCard() }
-    }
+    val authorizedCardLogs: LiveData<List<Card>> = cardLogDao.getAuthorizedCardLogs()
+
+//        .map { logs ->
+//        logs.map { it.toCard() }
+//    }
     
     suspend fun logCard(card: Card, isAuthorized: Boolean = false): Long {
-        val cardLog = CardLog(
-            pan = card.pan,
-            validDate = card.validDate,
-            cvm = card.cvm,
-            cvv = card.cvv,
-            codeService = card.codeService,
-            isAuthorized = isAuthorized
-        )
+//    suspend fun logCard(card: CardLog, isAuthorized: Boolean = false): Long {
+//        val cardLog = CardLog(
+//            pan = card.pan,
+//            validDate = card.validDate,
+//            cvm = card.cvm,
+//            cvv = card.cvv,
+//            codeService = card.codeService,
+//            isAuthorized = card.isAuthorized
+//        )
+
         return withContext(Dispatchers.IO) {
-            cardLogDao.insertCardLog(cardLog)
+//            cardLogDao.insertCardLog(cardLog)
+            cardLogDao.insertCardLog(card)
         }
 
 //        return cardLogDao.insertCardLog(cardLog)

@@ -87,6 +87,11 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    //Koin
+    // Dependências do Koin
+    implementation (libs.koin.android) // Versão mais recente do Koin
+//    implementation (libs.koin.androidx.viewmodel) // Para suporte a ViewModel
+
     //Usar máscaras no cardNumber e expiryDate
     implementation(libs.androidmask){
         exclude(group = "com.android.support", module = "support-v4")
