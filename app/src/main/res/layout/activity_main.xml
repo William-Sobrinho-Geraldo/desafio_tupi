@@ -10,15 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="0dp"
         android:text="Informações do Cartão de Crédito"
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/obs_m_todo_cmv_e_autoriza_o_gerados_aleat_riamente"
+        android:textSize="12sp" />
     <!-- Nome do titular -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Nome do Titular"
         android:textSize="14sp" />
 
@@ -44,11 +50,11 @@
         android:id="@+id/editTextCardNumber"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:paddingVertical="0dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_edittext"
         android:hint="0000 0000 0000 0000"
-        android:inputType="number" />
+        android:inputType="number"
+        android:paddingVertical="0dp" />
 
     <!-- Data de validade e CVV em linha -->
     <LinearLayout
@@ -76,8 +82,8 @@
                 android:background="@drawable/rounded_edittext"
                 android:hint="MM/AA"
                 android:inputType="date"
-                android:paddingVertical="0dp"
-                android:maxLength="5" />
+                android:maxLength="5"
+                android:paddingVertical="0dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -99,9 +105,9 @@
                 android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="123"
-                android:paddingVertical="0dp"
                 android:inputType="number"
-                android:maxLength="3" />
+                android:maxLength="3"
+                android:paddingVertical="0dp" />
         </LinearLayout>
     </LinearLayout>
 

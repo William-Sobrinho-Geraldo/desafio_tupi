@@ -9,4 +9,5 @@
     <string name="preencher_data_de_validade">Preencher data de validade</string>
     <string name="numero_de_cartao_invalido">Número de cartão inválido</string>
     <string name="cvv_invalido">Cvv inválido</string>
+    <string name="obs_m_todo_cmv_e_autoriza_o_gerados_aleat_riamente"><b>OBS:</b> Método CMV e Autorização gerados aleatóriamente</string>
 </resources>
