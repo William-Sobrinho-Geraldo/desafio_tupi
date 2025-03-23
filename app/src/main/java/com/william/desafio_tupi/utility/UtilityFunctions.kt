@@ -21,13 +21,13 @@ class Utility {
         fun validateCard(card: Card, context: Context): Result<Card> {
             // Validar PAN (número do cartão)
             if (!isValidPan(card.pan)) {
-                return Result.failure(Exception("Número de cartão inválido"))
+                return Result.failure(Exception(context.getString(R.string.numero_de_cartao_invalido)))
             }
 
             // Validar data de validade
             if (!isValidExpiryDate(card.validDate)) {
                 return if (card.validDate.isNullOrBlank()) {
-                    Result.failure(Exception("Preencher data de validade"))
+                    Result.failure(Exception(context.getString(R.string.preencher_data_de_validade)))
                 } else {
                     Result.failure(Exception(context.getString(R.string.data_invalida)))
                 }
@@ -42,7 +42,7 @@ class Utility {
                 return if (card.cvv.isNullOrBlank()) {
                     Result.failure(Exception(context.getString(R.string.preencher_cvv)))
                 } else {
-                    Result.failure(Exception("Cvv inválido"))
+                    Result.failure(Exception(context.getString(R.string.cvv_invalido)))
                 }
             }
 
@@ -57,7 +57,7 @@ class Utility {
          * 4556737586899855
          * 5100361728163639
          */
-        private fun isValidPan(cardNumber: String): Boolean {
+         fun isValidPan(cardNumber: String): Boolean {
             val cleanPan = cardNumber.replace("\\D".toRegex(), "")
 
             // Verificar comprimento (entre 13 e 19 dígitos)
@@ -84,13 +84,12 @@ class Utility {
         /**
          * Valida a data de validade do cartão
          */
-        private fun isValidExpiryDate(expiryDate: String): Boolean {
+        fun isValidExpiryDate(expiryDate: String): Boolean {
             return try {
                 // Define o formato da data (MM/yy)
                 val formatter = DateTimeFormatter.ofPattern("MM/yy")
 
                 // Converte a string de data de validade para LocalDate
-                // Adiciona "01/" para criar uma data completa (dia/mês/ano)
                 val expirationYearMonth = YearMonth.parse(expiryDate, formatter)
                 val expiration = expirationYearMonth.atDay(1)
                 // Obtém a data atual
@@ -112,7 +111,7 @@ class Utility {
         /**
          * Valida o método de verificação do cartão (CVM)
          */
-        private fun isValidCvm(cvm: String): Boolean {
+        fun isValidCvm(cvm: String): Boolean {
             // Lista de métodos de verificação suportados
             val supportedMethods = listOf("PIN", "SIGNATURE", "NONE", "ONLINE", "OFFLINE", "BIOMETRIA")
 
@@ -122,7 +121,7 @@ class Utility {
             }
         }
 
-        private fun isValidCvv(cvv: String): Boolean {
+        fun isValidCvv(cvv: String): Boolean {
             return cvv.length == 3
         }
 

@@ -25,12 +25,13 @@
     <EditText
         android:id="@+id/editTextCardholderName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_edittext"
         android:hint="Nome como aparece no cartão"
         android:inputType="textPersonName"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:paddingVertical="0dp" />
 
     <!-- Número do cartão -->
     <TextView
@@ -42,7 +43,8 @@
     <EditText
         android:id="@+id/editTextCardNumber"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:paddingVertical="0dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/rounded_edittext"
         android:hint="0000 0000 0000 0000"
@@ -70,10 +72,11 @@
             <EditText
                 android:id="@+id/editTextExpiryDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="MM/AA"
                 android:inputType="date"
+                android:paddingVertical="0dp"
                 android:maxLength="5" />
         </LinearLayout>
 
@@ -93,9 +96,10 @@
             <EditText
                 android:id="@+id/editTextCvv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="123"
+                android:paddingVertical="0dp"
                 android:inputType="number"
                 android:maxLength="3" />
         </LinearLayout>
@@ -131,10 +135,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:text="Nenhum log registrado"
+            android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
             android:visibility="gone"
-            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
