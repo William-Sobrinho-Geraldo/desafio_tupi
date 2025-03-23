@@ -37,19 +37,9 @@ Os dados do cartão poderiam ser mockados/fictícios mas decidi usar a interativ
 
 Para criação e busca de Logs salvos localmente no aparelho foi utilizada a biblioteca [ROOM](https://developer.android.com/training/data-storage/room?hl=pt-br) associada a [Coroutines](https://developer.android.com/kotlin/coroutines?hl=pt-br) para que a Main Thread não fosse impactada.
 
-A validação do PAN do cartão segue o algoritmo de Luhn.
+A validação do PAN do cartão segue o [Algoritmo de Luhn](https://medium.com/@gomesronaldy/o-algoritmo-de-luhn-mais-usado-do-que-voc%C3%AA-imagina-987cf5f998f3).
 
-
-<!-- ## Video demonstrativo
-
-A seguir temos um GIF  que demonstra de forma resumida das funcionalidades do App. Para acessar o vídeo completo com audio, basta clicar no link ao lado: 
- [Link do vídeo](https://youtu.be/z76hwPDHbc8)
-
-<div align="center">
-<img src = "https://user-images.githubusercontent.com/111225477/256329145-55d55350-f248-459e-b895-95f565cbee20.gif" width = "230px">
-
-</div>
-</br> -->
+Implementação de [Testes Unitários](https://developer.android.com/training/testing/local-tests?hl=pt-br) para as funções de validação do cartão usando a biblioteca [JUnit](https://developer.android.com/training/testing/local-tests?hl=pt-br).
 
 
 ## Como rodar o projeto
@@ -60,7 +50,14 @@ Para executar o projeto, basta seguir as instruções de um dos dois métodos ab
 https://github.com/William-Sobrinho-Geraldo/desafio_tupi</br>
 2- Extrair o arquivo zip e abri-lo no Android Studio</br>
 3- Sincronizar os arquivos do Gradle clicando no icone abaixo</br>
-4- Rodar o projeto em um emulador Android</br>
+<div align="start"> 
+<img src = "https://github.com/William-Sobrinho-Geraldo/desafio_tupi/blob/develop/app/src/main/res/drawable/sinc_gradle.png?raw=true" width = "450px" style="margin-left: 30px;">
+</div>
+4- Rodar o projeto em um emulador Android clicando no botão abaixo</br>
+<div align="start"> 
+<img src = "https://github.com/William-Sobrinho-Geraldo/desafio_tupi/blob/develop/app/src/main/res/drawable/rodar_projeto.png?raw=true" width = "450px" style="margin-left: 30px;" >
+</div>
+
 
 #### Método 2
 1- Fazer o Download do APK do desafio com o link do meu Google Drive abaixo</br>
